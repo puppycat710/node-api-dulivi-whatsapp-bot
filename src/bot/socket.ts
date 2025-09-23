@@ -1,5 +1,5 @@
-import makeWASocket, {
-  Browsers,
+import {
+  makeWASocket,
   useMultiFileAuthState,
 } from "@whiskeysockets/baileys";
 import { initSocketEvents } from "./events";
