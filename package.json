@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node --loader ts-node/esm src/server.ts",
-    "build": "rimraf ./build && tsc",
-    "start": "cross-env NODE_ENV=production node build/server.js",
+    "build": "tsc",
+    "start": "node --loader ts-node/esm src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
