@@ -1,6 +1,6 @@
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
-import { WASocket } from 'baileys'
+import { WASocket } from '@whiskeysockets/baileys'
 
 import { FormattedMessage } from '../utils/message'
 import companyInstructions from '../prompts/companyInstructions'

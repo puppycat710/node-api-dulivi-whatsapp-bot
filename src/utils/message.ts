@@ -1,4 +1,4 @@
-import { proto, WAMessage } from "baileys";
+import { proto, WAMessage } from "@whiskeysockets/baileys";
 import { logger } from "./logger";
 
 export type FormattedMessage = {

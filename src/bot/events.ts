@@ -1,6 +1,6 @@
 import qrcode from 'qrcode-terminal'
 import { Boom } from '@hapi/boom'
-import { DisconnectReason, WASocket, WAMessage } from 'baileys'
+import { DisconnectReason, WASocket, WAMessage } from '@whiskeysockets/baileys'
 import { logger } from '../utils/logger'
 import { getMessage } from '../utils/message'
 import MessageHandler from '../handlers/message'

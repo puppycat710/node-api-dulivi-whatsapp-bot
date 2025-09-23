@@ -1,7 +1,7 @@
 import makeWASocket, {
   Browsers,
   useMultiFileAuthState,
-} from "baileys";
+} from "@whiskeysockets/baileys";
 import { initSocketEvents } from "./events";
 
 export const initWASocket = async () => {
@@ -10,7 +10,7 @@ export const initWASocket = async () => {
   const sock = makeWASocket({
     auth: state,
     browser: Browsers.appropriate("Desktop"),
-    printQRInTerminal: false,
+    printQRInTerminal: true,
   });
 
   initSocketEvents(sock, saveCreds);
