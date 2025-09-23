@@ -9,8 +9,8 @@ export const initWASocket = async () => {
 
   const sock = makeWASocket({
     auth: state,
-    browser: Browsers.appropriate("Desktop"),
-    printQRInTerminal: true,
+    browser: ['Bot', 'Chrome', '1.0.0'],
+    printQRInTerminal: true
   });
 
   initSocketEvents(sock, saveCreds);
