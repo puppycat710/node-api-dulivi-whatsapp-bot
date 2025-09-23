@@ -40,8 +40,10 @@ export const initSocketEvents = (sock: WASocket, saveCreds: () => void) => {
 				const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
 
 				if (shouldReconnect) {
-					logger.info('Reconectando...')
-					initWASocket()
+					logger.info('Reconectando em 5s...')
+					setTimeout(() => {
+						initWASocket()
+					}, 5000) // delay de 5 segundos para evitar loop rápido
 				}
 				break
 			case 'open':

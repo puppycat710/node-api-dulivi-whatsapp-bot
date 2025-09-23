@@ -1,7 +1,12 @@
 import { makeWASocket, useMultiFileAuthState } from '@whiskeysockets/baileys'
 import { initSocketEvents } from './events'
 
+let socketInitialized = false
+
 export const initWASocket = async () => {
+	if (socketInitialized) return // já inicializado, não faz nada
+	socketInitialized = true
+
 	const { state, saveCreds } = await useMultiFileAuthState('/opt/render/data/auth')
 
 	const sock = makeWASocket({
