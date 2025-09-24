@@ -1,7 +1,10 @@
 import axios from 'axios'
 import qrcode from 'qrcode'
+
 import { getLatestQrCode } from '../bot/events'
 import { getSock } from '../bot/events'
+
+import { formatJid } from '../utils/formatJid'
 
 const apiClient = axios.create({
 	baseURL: 'https://generativelanguage.googleapis.com',
@@ -38,7 +41,7 @@ class ResponseController {
 		try {
 			const sock = getSock()
 
-			const jid = number.includes('@s.whatsapp.net') ? number : `${number.replace(/\D/g, '')}@s.whatsapp.net`
+			const jid = formatJid(number)
 
 			const gemini_response = await apiClient.post(`/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GOOGLE_API_KEY}`, {
 				contents: [
