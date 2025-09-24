@@ -41,7 +41,8 @@ class ResponseController {
 		try {
 			const sock = getSock()
 
-			const jid = formatJid(number)
+			// const jid = await formatJid(number)
+			const jid = number.includes('@s.whatsapp.net') ? number : `${number.replace(/\D/g, '')}@s.whatsapp.net`
 
 			const gemini_response = await apiClient.post(`/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GOOGLE_API_KEY}`, {
 				contents: [

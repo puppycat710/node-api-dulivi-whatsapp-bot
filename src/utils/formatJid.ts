@@ -1,4 +1,4 @@
-export function formatJid(number: string): string {
+export async function formatJid(number: string) {
 	// remove tudo que não é número
 	let onlyNumbers = number.replace(/\D/g, '')
 
@@ -9,3 +9,5 @@ export function formatJid(number: string): string {
 
 	return `${onlyNumbers}@s.whatsapp.net`
 }
+
+
