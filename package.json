@@ -15,6 +15,7 @@
   "type": "module",
   "dependencies": {
     "@hapi/boom": "^10.0.1",
+    "@libsql/client": "^0.15.15",
     "@whiskeysockets/baileys": "^6.7.19",
     "axios": "^1.8.4",
     "axios-retry": "^4.5.0",
