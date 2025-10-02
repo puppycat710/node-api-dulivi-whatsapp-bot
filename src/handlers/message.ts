@@ -60,7 +60,6 @@ const MessageHandler = async (bot: WASocket, message: FormattedMessage) => {
 				safetySettings,
 			}
 		)
-
 		// Extrai a resposta do texto gerado
 		const generated_text = gemini_response.data.candidates[0].content.parts[0].text
 

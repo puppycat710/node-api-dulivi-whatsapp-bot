@@ -61,10 +61,17 @@ export const initSocketEvents = (sock: WASocket, saveCreds: () => void) => {
 		messagesUpsertInitialized = true
 
 		sock.ev.on('messages.upsert', ({ messages }: { messages: WAMessage[] }) => {
+			console.log('📩 Recebi mensagem bruta:', JSON.stringify(messages, null, 2))
+
 			for (const msg of messages) {
-				const isGroup = msg.key.remoteJid?.endsWith('@g.us')
+				if (!msg.key.remoteJid) {
+					console.log('⚠️ Mensagem sem remoteJid, ignorada', msg)
+					return
+				}
+				const isGroup = msg.key.remoteJid.endsWith('@g.us')
 				const isStatus = msg.key.remoteJid === 'status@broadcast'
-				if (isGroup || isStatus) return
+				if (isStatus) return
+				if (isGroup) return
 
 				const formatted = getMessage(msg)
 				if (formatted) {

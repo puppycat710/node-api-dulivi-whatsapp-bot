@@ -1,33 +1,9 @@
-import axios from 'axios'
 import qrcode from 'qrcode'
 
 import { getLatestQrCode } from '../bot/events'
 import { getSock } from '../bot/events'
 
 import { formatJid } from '../utils/formatJid'
-
-const apiClient = axios.create({
-	baseURL: 'https://generativelanguage.googleapis.com',
-})
-
-const safetySettings = [
-	{
-		category: 'HARM_CATEGORY_HARASSMENT',
-		threshold: 'BLOCK_MEDIUM_AND_ABOVE',
-	},
-	{
-		category: 'HARM_CATEGORY_HATE_SPEECH',
-		threshold: 'BLOCK_MEDIUM_AND_ABOVE',
-	},
-	{
-		category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
-		threshold: 'BLOCK_MEDIUM_AND_ABOVE',
-	},
-	{
-		category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-		threshold: 'BLOCK_MEDIUM_AND_ABOVE',
-	},
-]
 
 class ResponseController {
 	// @ts-ignore
@@ -42,21 +18,8 @@ class ResponseController {
 			const sock = getSock()
 
 			const jid = await formatJid(number)
-			// const jid = number.includes('@s.whatsapp.net') ? number : `${number.replace(/\D/g, '')}@s.whatsapp.net`
-			const gemini_response = await apiClient.post(`/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GOOGLE_API_KEY}`, {
-				contents: [
-					{
-						parts: [{ text: message }],
-					},
-				],
-				safetySettings,
-			})
 
-			// Extrai a resposta do texto gerado
-			// @ts-ignore
-			const generated_text = gemini_response.data.candidates[0].content.parts[0].text
-
-			const response = await sock.sendMessage(jid, { text: generated_text })
+			const response = await sock.sendMessage(jid, { text: message })
 
 			res.status(200).json(response)
 		} catch (error: any) {
